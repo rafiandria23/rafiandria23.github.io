@@ -57,6 +57,25 @@ body {
     height: auto;
 }
 
+.button {
+    background-color:#41464d;
+    color: honeydew;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-style: bold;
+    width: auto;
+    height: auto;
+    padding: 5% 5%;
+    border: none;
+    border-radius: 0.5em;
+}
+
+.button:hover {
+    background-color: inherit;
+    border: 1px solid black;
+    color: black;
+}
+
 
 
 
@@ -73,6 +92,10 @@ body {
 
 .fc-p {
     line-height: 200%;
+}
+
+.upper {
+    text-transform: uppercase;
 }
 
 
@@ -161,9 +184,32 @@ header {
     line-height: 200%;
 }
 
+.portfolio {
+    text-align: center;
+}
+
+#port-div img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.7em 0.7em 0 0;
+}
+
+#port-div {
+    display: inline-block !important;
+    margin: 2.5% 2.5% !important;
+    padding-bottom: 3%;
+    border-radius: 0.7em;
+    box-shadow: 0 0 10px 10px grey;
+    text-align: center;
+    width: 20%;
+}
 
 
 
 
 
 /* Footer Styling */
+
+.footer {
+    
+}
