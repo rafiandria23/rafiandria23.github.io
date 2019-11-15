@@ -112,6 +112,7 @@ header {
 .header-title {
     display: inline-block;
     padding-left: 5%;
+    margin: 0 !important;
 }
 
 .header-title h3 {
@@ -121,7 +122,10 @@ header {
 
 .header-navbar {
     display: inline-block;
-    padding-left: 1%;
+    text-align: right;
+    width: 40% !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 #header-navlink {
