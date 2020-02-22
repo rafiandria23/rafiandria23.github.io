@@ -1,0 +1,40 @@
+Arguments: 
+  /snap/node/2598/bin/node /snap/node/2598/bin/yarn.js config get registry
+
+PATH: 
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/adamrafiandri/.fzf/bin:/snap/bin:/snap/bin
+
+Yarn version: 
+  1.22.0
+
+Node version: 
+  13.8.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EACCES: permission denied, write
+      at writeSync (fs.js:614:3)
+      at SyncWriteStream._write (internal/fs/sync_write_stream.js:24:3)
+      at doWrite (_stream_writable.js:454:12)
+      at writeOrBuffer (_stream_writable.js:436:5)
+      at SyncWriteStream.Writable.write (_stream_writable.js:327:11)
+      at ConsoleReporter._log (/snap/node/2598/lib/cli.js:96752:17)
+      at ConsoleReporter.log (/snap/node/2598/lib/cli.js:96740:10)
+      at get (/snap/node/2598/lib/cli.js:87523:14)
+      at Object.<anonymous> (/snap/node/2598/lib/cli.js:25940:25)
+      at Generator.next (<anonymous>)
+
+npm manifest: 
+  {
+    "name": "rafiandria23.github.io",
+    "version": "0.1.0",
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
