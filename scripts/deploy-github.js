@@ -2,6 +2,8 @@
 
 const ghPages = require('gh-pages')
 
+ghPages.clean();
+
 ghPages.publish(
   'public',
   {
