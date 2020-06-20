@@ -2,52 +2,25 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { colors } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import {
-  LinkedIn as LinkedInLogo,
-  GitHub as GitHubLogo,
-} from '@material-ui/icons';
-import { FaStackOverflow as StackOverflowLogo } from 'react-icons/fa';
+import { Instagram as InstagramLogo } from '@material-ui/icons';
+import { FaFacebookF as FacebookLogo } from 'react-icons/fa';
 
-import {
-  myGitHubAccount,
-  myLinkedInAccount,
-  myStackOverflowAccount,
-} from '@/utils';
+import { myFacebookAccount, myInstagramAccount } from '@/utils';
 
-export interface HeaderProps {}
+export interface FooterProps {}
 
-export default function Header({}: HeaderProps) {
+export default function Footer({}: FooterProps) {
   const classes = useStyles();
 
   return (
-    <header className={classes.headerWrapper}>
+    <footer className={classes.footerWrapper}>
       <section className={classes.leftSection}>
-        <nav className={classes.navWrapper}>
-          <a
-            className={classes.navLink}
-            href={myLinkedInAccount}
-            target="_blank"
-          >
-            <LinkedInLogo className={classes.logo} />
-          </a>
-          <a className={classes.navLink} href={myGitHubAccount} target="_blank">
-            <GitHubLogo className={classes.logo} />
-          </a>
-          <a
-            className={classes.navLink}
-            href={myStackOverflowAccount}
-            target="_blank"
-          >
-            <StackOverflowLogo className={classes.logo} />
-          </a>
-        </nav>
+        <Link className={classes.navLink} to="/">
+          &copy; 2020 Adam Rafiandri.
+        </Link>
       </section>
-      <section className={classes.centerSection}></section>
-      <section className={classes.rightSection}>
+      <section className={classes.centerSection}>
         <nav className={classes.navWrapper}>
-          <Link className={classes.navLink} to="/">
-            Home
-          </Link>
           <Link className={classes.navLink} to="/about">
             About
           </Link>
@@ -59,40 +32,56 @@ export default function Header({}: HeaderProps) {
           </Link>
         </nav>
       </section>
-    </header>
+      <section className={classes.rightSection}>
+        <nav className={classes.navWrapper}>
+          <a className={classes.navLink} href={myFacebookAccount} target="_blank">
+            <FacebookLogo className={classes.logo} />
+          </a>
+          <a className={classes.navLink} href={myInstagramAccount} target="_blank">
+            <InstagramLogo className={classes.logo} />
+          </a>
+        </nav>
+      </section>
+    </footer>
   );
 }
 
 const useStyles = makeStyles(() =>
   createStyles({
-    headerWrapper: {
+    footerWrapper: {
       background: colors.blue[900],
       display: 'flex',
       justifyContent: 'space-evenly',
       alignItems: 'center',
-      top: 0,
+      bottom: 0,
       left: 0,
       right: 0,
-      padding: '1.4rem 2rem',
+      padding: '1.6rem 2rem',
     },
     leftSection: {
       float: 'left',
       display: 'flex',
       justifyContent: 'flex-start',
       alignItems: 'center',
-      width: '100%',
+      width: '100%'
     },
     centerSection: {
       display: 'flex',
-      justifyContent: 'space-around',
+      justifyContent: 'space-evenly',
       alignItems: 'center',
+      width: '100%'
     },
     rightSection: {
       float: 'right',
       display: 'flex',
       justifyContent: 'flex-end',
       alignItems: 'center',
-      width: '100%',
+      width: '100%'
+    },
+    navWrapper: {
+      display: 'flex',
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
     },
     navLink: {
       textDecoration: 'none',
@@ -110,11 +99,6 @@ const useStyles = makeStyles(() =>
     logo: {
       width: '2rem',
       height: '2rem',
-    },
-    navWrapper: {
-      display: 'flex',
-      justifyContent: 'space-evenly',
-      alignItems: 'center',
     },
   })
 );
