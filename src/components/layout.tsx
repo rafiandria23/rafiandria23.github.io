@@ -35,6 +35,9 @@ const useStyles = makeStyles(() => createStyles({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    minHeight: '100vh'
+    minHeight: '100vh',
+    '& > section:first-child': {
+      paddingTop: '8vh'
+    }
   }
 }));

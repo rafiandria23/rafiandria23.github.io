@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'gatsby';
 import { colors } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
@@ -18,9 +18,25 @@ export interface HeaderProps {}
 
 export default function Header({}: HeaderProps) {
   const classes = useStyles();
+  const [headerScroll, setHeaderScroll] = useState<boolean>(false);
+
+  const handleHeaderScrollAnimation = (): void => {
+    const { scrollY } = window;
+    scrollY > 50 ? setHeaderScroll(true) : setHeaderScroll(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener('scroll', handleHeaderScrollAnimation);
+    return () =>
+      document.removeEventListener('scroll', handleHeaderScrollAnimation);
+  }, []);
 
   return (
-    <header className={classes.headerWrapper}>
+    <header
+      className={`${classes.headerWrapper} ${
+        headerScroll ? classes.headerWrapperScrollAnimation : ''
+      }`}
+    >
       <section className={classes.leftSection}>
         <nav className={classes.navWrapper}>
           <a
@@ -66,7 +82,7 @@ export default function Header({}: HeaderProps) {
 const useStyles = makeStyles(() =>
   createStyles({
     headerWrapper: {
-      background: colors.blue[900],
+      background: 'transparent',
       display: 'flex',
       justifyContent: 'space-evenly',
       alignItems: 'center',
@@ -74,6 +90,13 @@ const useStyles = makeStyles(() =>
       left: 0,
       right: 0,
       padding: '1.4rem 2rem',
+      position: 'fixed',
+      zIndex: 1333,
+      transition: 'all .5s ease',
+    },
+    headerWrapperScrollAnimation: {
+      boxShadow: '0 0 10px rgba(0,0,0,0.3)',
+      background: colors.blue[600],
     },
     leftSection: {
       float: 'left',
@@ -101,10 +124,12 @@ const useStyles = makeStyles(() =>
       fontSize: '1.1rem',
       textTransform: 'uppercase',
       color: colors.grey[50],
-      transition: 'color .5s ease',
+      transition: 'all .5s ease',
       margin: '0 1rem',
       '&:hover': {
-        color: colors.grey[300],
+        boxShadow: '0 0 10px rgba(0,0,0,0.3)',
+        padding: '1rem',
+        borderRadius: '8px'
       },
     },
     logo: {
