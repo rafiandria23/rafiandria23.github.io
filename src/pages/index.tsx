@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link, PageProps } from 'gatsby';
+import { PageProps } from 'gatsby';
 
-import { Layout, Image, SEO, ProfileBanner } from '@/components';
+import { Layout, SEO, ProfileBanner } from '@/components';
 
 export interface IndexPageProps extends PageProps {}
 

@@ -10,7 +10,7 @@ export default function ProfileBanner({ }: ProfileBannerProps) {
   const classes = useStyles();
   const data = useStaticQuery(graphql`
     query {
-      profilePhotoNoBg: file(relativePath: { eq: "profile-photo-no-bg.png" }) {
+      profilePhoto: file(relativePath: { eq: "profile-photo.png" }) {
         childImageSharp {
           fixed(quality: 100) {
             ...GatsbyImageSharpFixed
@@ -23,7 +23,7 @@ export default function ProfileBanner({ }: ProfileBannerProps) {
   return (
     <section className={classes.profileBannerWrapper}>
       <section className={classes.profilePhotoSection}>
-        <Img className={classes.profilePhotoNoBg} fixed={data.profilePhotoNoBg.childImageSharp.fixed} alt="Adam Rafiandri" />
+        <Img className={classes.profilePhotoNoBg} fixed={data.profilePhoto.childImageSharp.fixed} alt="Adam Rafiandri" />
       </section>
       <section className={classes.introductionSection}>
 

@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'gatsby';
-import { colors } from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { navigate } from 'gatsby';
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  IconButton,
+  Container,
+} from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import {
   LinkedIn as LinkedInLogo,
   GitHub as GitHubLogo,
@@ -18,128 +24,76 @@ export interface HeaderProps {}
 
 export default function Header({}: HeaderProps) {
   const classes = useStyles();
-  const [headerScroll, setHeaderScroll] = useState<boolean>(false);
 
-  const handleHeaderScrollAnimation = (): void => {
-    const { scrollY } = window;
-    scrollY > 50 ? setHeaderScroll(true) : setHeaderScroll(false);
+  const _goTo = (
+    target: string,
+    type: `internal` | `external` = `internal`
+  ) => {
+    switch (type) {
+      case `internal`:
+        navigate(target);
+        break;
+
+      case `external`:
+        window.open(target, `_blank`);
+        break;
+    }
   };
 
-  useEffect(() => {
-    document.addEventListener('scroll', handleHeaderScrollAnimation);
-    return () =>
-      document.removeEventListener('scroll', handleHeaderScrollAnimation);
-  }, []);
-
   return (
-    <header
-      className={`${classes.headerWrapper} ${
-        headerScroll ? classes.headerWrapperScrollAnimation : ''
-      }`}
+    <Container
+      classes={{
+        root: classes.headerWrapper,
+      }}
+      component={`header`}
     >
-      <section className={classes.leftSection}>
-        <nav className={classes.navWrapper}>
-          <a
-            className={classes.navLink}
-            href={myLinkedInAccount}
-            target="_blank"
-          >
-            <LinkedInLogo className={classes.logo} />
-          </a>
-          <a className={classes.navLink} href={myGitHubAccount} target="_blank">
-            <GitHubLogo className={classes.logo} />
-          </a>
-          <a
-            className={classes.navLink}
-            href={myStackOverflowAccount}
-            target="_blank"
-          >
-            <StackOverflowLogo className={classes.logo} />
-          </a>
-        </nav>
-      </section>
-      <section className={classes.centerSection}></section>
-      <section className={classes.rightSection}>
-        <nav className={classes.navWrapper}>
-          <Link className={classes.navLink} to="/">
+      <AppBar>
+        <Toolbar>
+          <section className={classes.socialSection}>
+            <IconButton
+              color={`inherit`}
+              onClick={() => _goTo(myLinkedInAccount, `external`)}
+            >
+              <LinkedInLogo />
+            </IconButton>
+            <IconButton
+              color={`inherit`}
+              onClick={() => _goTo(myGitHubAccount, `external`)}
+            >
+              <GitHubLogo />
+            </IconButton>
+            <IconButton
+              color={`inherit`}
+              onClick={() => _goTo(myStackOverflowAccount, `external`)}
+            >
+              <StackOverflowLogo />
+            </IconButton>
+          </section>
+          <Button color={`inherit`} onClick={() => _goTo(`/`)}>
             Home
-          </Link>
-          <Link className={classes.navLink} to="/about">
+          </Button>
+          <Button color={`inherit`} onClick={() => _goTo(`/about`)}>
             About
-          </Link>
-          <Link className={classes.navLink} to="/projects">
+          </Button>
+          <Button color={`inherit`} onClick={() => _goTo(`/projects`)}>
             Projects
-          </Link>
-          <Link className={classes.navLink} to="/blog">
+          </Button>
+          <Button color={`inherit`} onClick={() => _goTo(`/blog`)}>
             Blog
-          </Link>
-        </nav>
-      </section>
-    </header>
+          </Button>
+        </Toolbar>
+      </AppBar>
+    </Container>
   );
 }
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     headerWrapper: {
-      background: 'transparent',
-      display: 'flex',
-      justifyContent: 'space-evenly',
-      alignItems: 'center',
-      top: 0,
-      left: 0,
-      right: 0,
-      padding: '1.4rem 2rem',
-      position: 'fixed',
-      zIndex: 1333,
-      transition: 'all .5s ease',
+      flexGrow: 1,
     },
-    headerWrapperScrollAnimation: {
-      boxShadow: '0 0 10px rgba(0,0,0,0.3)',
-      background: colors.blue[600],
-    },
-    leftSection: {
-      float: 'left',
-      display: 'flex',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      width: '100%',
-    },
-    centerSection: {
-      display: 'flex',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-    },
-    rightSection: {
-      float: 'right',
-      display: 'flex',
-      justifyContent: 'flex-end',
-      alignItems: 'center',
-      width: '100%',
-    },
-    navLink: {
-      textDecoration: 'none',
-      display: 'flex',
-      lineHeight: 1,
-      fontSize: '1.1rem',
-      textTransform: 'uppercase',
-      color: colors.grey[50],
-      transition: 'all .5s ease',
-      margin: '0 1rem',
-      '&:hover': {
-        boxShadow: '0 0 10px rgba(0,0,0,0.3)',
-        padding: '1rem',
-        borderRadius: '8px'
-      },
-    },
-    logo: {
-      width: '2rem',
-      height: '2rem',
-    },
-    navWrapper: {
-      display: 'flex',
-      justifyContent: 'space-evenly',
-      alignItems: 'center',
+    socialSection: {
+      flexGrow: 1,
     },
   })
 );

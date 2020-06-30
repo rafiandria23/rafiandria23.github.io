@@ -1,8 +1,9 @@
 import React, { ReactNode, useEffect } from 'react';
 import { colors } from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, ThemeProvider } from '@material-ui/core/styles';
 import aos from 'aos';
 
+import { theme } from '@/styles';
 import Header from './header';
 import Footer from './footer';
 
@@ -21,11 +22,11 @@ export default function Layout({ children }: LayoutProps) {
   }, []);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Header />
       <main className={classes.mainWrapper}>{children}</main>
       <Footer />
-    </>
+    </ThemeProvider>
   );
 };
 
