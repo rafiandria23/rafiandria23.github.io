@@ -17,7 +17,7 @@ export default function ProfileBanner({}: ProfileBannerProps) {
   const classes = useStyles();
   const data = useStaticQuery(graphql`
     query {
-      profilePhoto: file(relativePath: { eq: "profile-photo.png" }) {
+      profilePhoto: file(relativePath: { eq: "profile-photo.jpg" }) {
         childImageSharp {
           fixed(quality: 100) {
             ...GatsbyImageSharpFixed
