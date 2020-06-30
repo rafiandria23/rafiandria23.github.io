@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { blue, red } from '@material-ui/core/colors';
+import { blue, red, grey } from '@material-ui/core/colors';
 
 export default createMuiTheme({
   palette: {
@@ -7,7 +7,8 @@ export default createMuiTheme({
       main: blue[500],
     },
     secondary: {
-      main: '#19857b',
+      main: '#fff',
+      dark: grey[300],
     },
     error: {
       main: red.A400,

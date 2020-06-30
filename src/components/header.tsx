@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { navigate } from 'gatsby';
 import {
   AppBar,
@@ -6,6 +6,7 @@ import {
   Button,
   IconButton,
   Container,
+  Tooltip,
 } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import {
@@ -24,20 +25,20 @@ export interface HeaderProps {}
 
 export default function Header({}: HeaderProps) {
   const classes = useStyles();
+  const [animatedHeader, setAnimatedHeader] = useState<boolean>(false);
 
-  const _goTo = (
-    target: string,
-    type: `internal` | `external` = `internal`
-  ) => {
-    switch (type) {
-      case `internal`:
-        navigate(target);
-        break;
+  const _handleScrollAnimation = (): void => {
+    const { scrollY } = window;
+    scrollY < 50 ? setAnimatedHeader(false) : setAnimatedHeader(true);
+  };
 
-      case `external`:
-        window.open(target, `_blank`);
-        break;
-    }
+  useEffect(() => {
+    document.addEventListener('scroll', _handleScrollAnimation);
+    return () => document.removeEventListener('scroll', _handleScrollAnimation);
+  }, []);
+
+  const _goTo = (target: string): void => {
+    navigate(target);
   };
 
   return (
@@ -47,28 +48,55 @@ export default function Header({}: HeaderProps) {
       }}
       component={`header`}
     >
-      <AppBar>
+      <AppBar
+        classes={{
+          root: `${classes.appBar} ${
+            animatedHeader ? classes.appBarAnimated : classes.appBarUnanimated
+          }`,
+        }}
+      >
         <Toolbar>
           <section className={classes.socialSection}>
-            <IconButton
-              color={`inherit`}
-              onClick={() => _goTo(myLinkedInAccount, `external`)}
+            <Tooltip
+              title={`Adam Rafiandri on LinkedIn`}
+              aria-label={`Adam Rafiandri on LinkedIn`}
             >
-              <LinkedInLogo />
-            </IconButton>
-            <IconButton
-              color={`inherit`}
-              onClick={() => _goTo(myGitHubAccount, `external`)}
+              <IconButton
+                color={`inherit`}
+                href={myLinkedInAccount}
+                target={`_blank`}
+              >
+                <LinkedInLogo />
+              </IconButton>
+            </Tooltip>
+
+            <Tooltip
+              title={`Adam Rafiandri on GitHub`}
+              aria-label={`Adam Rafiandri on GitHub`}
             >
-              <GitHubLogo />
-            </IconButton>
-            <IconButton
-              color={`inherit`}
-              onClick={() => _goTo(myStackOverflowAccount, `external`)}
+              <IconButton
+                color={`inherit`}
+                href={myGitHubAccount}
+                target={`_blank`}
+              >
+                <GitHubLogo />
+              </IconButton>
+            </Tooltip>
+
+            <Tooltip
+              title={`Adam Rafiandri on Stack Overflow`}
+              aria-label={`Adam Rafiandri on Stack Overflow`}
             >
-              <StackOverflowLogo />
-            </IconButton>
+              <IconButton
+                color={`inherit`}
+                href={myStackOverflowAccount}
+                target={`_blank`}
+              >
+                <StackOverflowLogo />
+              </IconButton>
+            </Tooltip>
           </section>
+
           <Button color={`inherit`} onClick={() => _goTo(`/`)}>
             Home
           </Button>
@@ -95,5 +123,13 @@ const useStyles = makeStyles((theme: Theme) =>
     socialSection: {
       flexGrow: 1,
     },
+    appBar: {
+      transition: 'all .5s ease',
+    },
+    appBarUnanimated: {
+      boxShadow: 'none',
+      backgroundColor: 'transparent',
+    },
+    appBarAnimated: {},
   })
 );

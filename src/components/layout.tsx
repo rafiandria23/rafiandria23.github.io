@@ -1,6 +1,10 @@
 import React, { ReactNode, useEffect } from 'react';
-import { colors } from '@material-ui/core';
-import { makeStyles, createStyles, ThemeProvider } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createStyles,
+  ThemeProvider,
+  Theme,
+} from '@material-ui/core/styles';
 import aos from 'aos';
 
 import { theme } from '@/styles';
@@ -8,6 +12,7 @@ import Header from './header';
 import Footer from './footer';
 
 // Style Imports
+import 'fontsource-roboto';
 import '@/styles/index.scss';
 
 export interface LayoutProps {
@@ -28,17 +33,19 @@ export default function Layout({ children }: LayoutProps) {
       <Footer />
     </ThemeProvider>
   );
-};
+}
 
-const useStyles = makeStyles(() => createStyles({
-  mainWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    minHeight: '100vh',
-    '& > section:first-child': {
-      paddingTop: '8vh'
-    }
-  }
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    mainWrapper: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      minHeight: '100vh',
+      '& > section:first-child': {
+        height: '100vh'
+      },
+    },
+  })
+);
