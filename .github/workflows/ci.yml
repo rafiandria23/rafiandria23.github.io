@@ -15,4 +15,4 @@ jobs:
           access-token: ${{ secrets.ACCESS_TOKEN }}
           deploy-branch: master
         env:
-          CMS_API_URL: ${{ secrects.CMS_API_URL }}
+          CMS_API_URL: ${{ secrets.CMS_API_URL }}
