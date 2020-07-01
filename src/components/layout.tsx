@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       minHeight: '100vh',
       '& > section:first-child': {
-        height: '100vh'
+        height: '100vh',
       },
     },
   })

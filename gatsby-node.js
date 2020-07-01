@@ -1,7 +1,30 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+  const result = await graphql(`
+    {
+      projects: allStrapiProject {
+        edges {
+          node {
+            strapiId
+          }
+        }
+      }
+    }
+  `);
 
-// You can delete this file if you're not using it
+  if (result.errors) {
+    throw result.errors;
+  }
+
+  const projects = result.data.projects.edges;
+
+  projects.forEach((project) => {
+    createPage({
+      path: `/projects/${project.node.strapiId}`,
+      component: require.resolve(`./src/templates/project.tsx`),
+      context: {
+        id: project.node.strapiId
+      }
+    });
+  });
+}

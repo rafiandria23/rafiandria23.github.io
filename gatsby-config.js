@@ -1,3 +1,5 @@
+process.env.NODE_ENV !== `production` ? require('dotenv').config() : '';
+
 module.exports = {
   siteMetadata: {
     title: `Adam Rafiandri`,
@@ -23,8 +25,11 @@ module.exports = {
     },
     {
       resolve: `gatsby-source-strapi`,
-      apiURL: process.env.CMS_API_URL || `http://localhost:1337`,
-      contentTypes: [`post`, `project`, `tag`],
+      options: {
+        apiURL: process.env.CMS_API_URL || `http://localhost:1337`,
+        queryLimit: 1000,
+        contentTypes: [`post`, `project`, `tag`],
+      }
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
