@@ -21,6 +21,11 @@ module.exports = {
         path: `${__dirname}/src/assets/documents`,
       },
     },
+    {
+      resolve: `gatsby-source-strapi`,
+      apiURL: process.env.CMS_API_URL || `http://localhost:1337`,
+      contentTypes: [`post`, `project`, `tag`],
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -49,9 +54,9 @@ module.exports = {
       resolve: `gatsby-plugin-module-resolver`,
       options: {
         aliases: {
-          '@': `src`
-        }
-      }
+          '@': `src`,
+        },
+      },
     },
   ],
-}
+};
