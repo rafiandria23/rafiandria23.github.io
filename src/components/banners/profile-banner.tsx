@@ -69,16 +69,21 @@ export default function ProfileBanner({}: ProfileBannerProps) {
 
           <Grid container classes={{ container: classes.profileButtonWrapper }}>
             <Grid item>
-              <Button
-                variant={`outlined`}
-                color={`secondary`}
-                size={`large`}
-                fullWidth
-                href={data.latestResume.publicURL}
-                target={`_blank`}
+              <Tooltip
+                title={`Download My Resume!`}
+                aria-label={`Download My Resume!`}
               >
-                Download Me
-              </Button>
+                <Button
+                  variant={`outlined`}
+                  color={`secondary`}
+                  size={`large`}
+                  fullWidth
+                  href={data.latestResume.publicURL}
+                  target={`_blank`}
+                >
+                  Download Me
+                </Button>
+              </Tooltip>
             </Grid>
           </Grid>
         </Paper>
@@ -96,7 +101,7 @@ export default function ProfileBanner({}: ProfileBannerProps) {
             <Img
               className={classes.profilePhoto}
               fixed={data.profilePhoto.childImageSharp.fixed}
-              alt="Adam Rafiandri"
+              alt={`Adam Rafiandri`}
             />
           </Paper>
         </Tooltip>
