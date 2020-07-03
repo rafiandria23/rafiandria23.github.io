@@ -70,7 +70,7 @@ module.exports = {
         head: true,
         anonymize: true,
         pageTransitionDelay: 0,
-        defer: true,
+        defer: false,
       },
     },
   ],
