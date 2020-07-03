@@ -7,6 +7,16 @@ module.exports = {
     author: `Adam Rafiandri`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID || `none`,
+        head: true,
+        anonymize: true,
+        pageTransitionDelay: 0,
+        defer: false,
+      },
+    },
     `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
     {
@@ -61,16 +71,6 @@ module.exports = {
         aliases: {
           '@': `src`,
         },
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID || `none`,
-        head: true,
-        anonymize: true,
-        pageTransitionDelay: 0,
-        defer: false,
       },
     },
   ],
