@@ -29,7 +29,7 @@ module.exports = {
         apiURL: process.env.CMS_API_URL || `http://localhost:1337`,
         queryLimit: 1000,
         contentTypes: [`post`, `project`, `tag`],
-      }
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -66,8 +66,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID || `none`
-      }
-    }
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID || `none`,
+        head: true,
+        anonymize: true,
+        pageTransitionDelay: 0,
+        defer: true,
+      },
+    },
   ],
 };
