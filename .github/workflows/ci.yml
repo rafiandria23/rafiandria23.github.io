@@ -15,4 +15,5 @@ jobs:
           access-token: ${{ secrets.ACCESS_TOKEN }}
           deploy-branch: master
         env:
+          GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
           CMS_API_URL: ${{ secrets.CMS_API_URL }}
