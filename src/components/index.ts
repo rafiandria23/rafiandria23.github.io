@@ -1,9 +1,9 @@
 /**
  * General Components
  */
-export { default as Header } from './header';
-export { default as Footer } from './footer';
-export { default as Layout } from './layout';
+export { default as Header } from './general-components/header';
+export { default as Footer } from './general-components/footer';
+export { default as Layout } from './general-components/layout';
 export { default as SEO } from './seo';
 
 /**

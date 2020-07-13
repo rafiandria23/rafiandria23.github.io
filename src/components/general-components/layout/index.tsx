@@ -8,8 +8,7 @@ import {
 import aos from 'aos';
 
 import { theme } from '@/styles';
-import Header from './header';
-import Footer from './footer';
+import { Header, Footer } from '@/components';
 
 // Style Imports
 import 'fontsource-roboto';
@@ -30,7 +29,7 @@ export default function Layout({ children }: LayoutProps) {
     <ThemeProvider theme={theme}>
       <Header />
       <main className={classes.mainWrapper}>{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </ThemeProvider>
   );
 }
