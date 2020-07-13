@@ -5,6 +5,8 @@ export { default as Header } from './general-components/header';
 export { default as Footer } from './general-components/footer';
 export { default as Layout } from './general-components/layout';
 export { default as SEO } from './seo';
+export { default as LatestCard } from './general-components/latest-card';
+export { default as LatestList } from './general-components/latest-list';
 
 /**
  * Banner Components

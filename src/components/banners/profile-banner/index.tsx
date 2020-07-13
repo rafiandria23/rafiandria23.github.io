@@ -39,7 +39,7 @@ export default function ProfileBanner({}: ProfileBannerProps) {
         container: classes.profileBannerWrapper,
       }}
       direction={`row`}
-      justify={`space-between`}
+      justify={`space-evenly`}
       alignItems={`center`}
       component={`section`}
     >
@@ -52,14 +52,14 @@ export default function ProfileBanner({}: ProfileBannerProps) {
           }}
         >
           <Typography
-            variant={`h1`}
+            variant={`h2`}
             classes={{ root: classes.greeterText }}
             paragraph
           >
             Hey, I'm Adam.
           </Typography>
           <Typography
-            variant={`h4`}
+            variant={`h5`}
             classes={{ root: classes.introductionText }}
             paragraph
           >
@@ -89,21 +89,23 @@ export default function ProfileBanner({}: ProfileBannerProps) {
         </Paper>
       </Grid>
 
-      <Grid item xs={4}>
+      <Grid item xs={4} container justify={`center`} alignItems={`center`}>
         <Tooltip title={`Adam Rafiandri`} aria-label={`Adam Rafiandri`}>
-          <Paper
-            elevation={0}
-            component={`section`}
-            classes={{
-              root: classes.profilePhotoSection,
-            }}
-          >
-            <Img
-              className={classes.profilePhoto}
-              fixed={data.profilePhoto.childImageSharp.fixed}
-              alt={`Adam Rafiandri`}
-            />
-          </Paper>
+          <Grid item>
+            <Paper
+              elevation={0}
+              component={`section`}
+              classes={{
+                root: classes.profilePhotoSection,
+              }}
+            >
+              <Img
+                className={classes.profilePhoto}
+                fixed={data.profilePhoto.childImageSharp.fixed}
+                alt={`Adam Rafiandri`}
+              />
+            </Paper>
+          </Grid>
         </Tooltip>
       </Grid>
     </Grid>
@@ -118,15 +120,15 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingRight: theme.spacing(5),
     },
     profilePhotoSection: {
-      width: `400px`,
-      height: `400px`,
+      width: `350px`,
+      height: `350px`,
       position: `relative`,
       overflow: `hidden`,
       borderRadius: `50%`,
       display: `flex`,
       justifyContent: `center`,
       alignItems: `center`,
-      paddingTop: theme.spacing(10),
+      paddingTop: theme.spacing(15),
     },
     profilePhoto: {
       display: `inline`,
