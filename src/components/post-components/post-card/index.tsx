@@ -1,92 +1,92 @@
 import React, { useState } from 'react';
 import { navigate } from 'gatsby';
 import clsx from 'clsx';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import {
   Card,
   CardActionArea,
   CardActions,
-  CardContent,
   CardMedia,
+  CardContent,
+  Typography,
+  Button,
   IconButton,
   Chip,
   Collapse,
-  Typography,
-  Button,
 } from '@material-ui/core';
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 
-import { IPost, IProject } from '@/types';
+import { IPost } from '@/types';
 
-export interface LatestCardProps {
-  data: IPost | IProject;
-  type: `post` | `project`;
+export interface PostCardProps {
+  post: IPost;
 }
 
-export default function LatestCard({ data, type }: LatestCardProps) {
+export default function PostCard({ post }: PostCardProps) {
   const classes = useStyles();
-  const [showTags, setShowTags] = useState<boolean>(false);
+  const [showProjectTags, setShowProjectTags] = useState<boolean>(false);
 
   return (
-    <Card classes={{ root: classes.latestCardWrapper }}>
+    <Card classes={{ root: classes.postCardWrapper }}>
       <CardActionArea>
-        {data.cover && (
+        {post.cover && (
           <CardMedia
-            classes={{ root: classes.latestCardCover }}
-            image={data.cover}
-            title={
-              type === `post` ? (data as IPost).title : (data as IProject).name
-            }
+            classes={{ root: classes.postCoverImage }}
+            image={post.cover}
+            title={post.title}
             component={`img`}
           />
         )}
 
         <CardContent>
           <Typography gutterBottom variant={`h4`} component={`h2`}>
-            {type === `post` ? (data as IPost).title : (data as IProject).name}
+            {post.title}
           </Typography>
-          <Typography paragraph variant={`subtitle1`} component={`p`}>
-            {type === `post`
-              ? (data as IPost).summary
-              : (data as IProject).overview}
+          <Typography
+            paragraph
+            variant={`subtitle1`}
+            component={`p`}
+            // classes={{ root: classes.postCardContentWrapper }}
+          >
+            {post.summary}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions classes={{ root: classes.latestCardActionsWrapper }}>
+      <CardActions classes={{ root: classes.postCardActionsWrapper }}>
         <Button
           size={`medium`}
           color={`primary`}
           variant={`outlined`}
           onClick={() =>
-            type === `post`
-              ? navigate(`/projects/${(data as IPost).title}/${data.strapiId}`)
-              : navigate(
-                  `/projects/${(data as IProject).name}/${data.strapiId}`
-                )
+            navigate(
+              `/projects/${post.title.split(' ').join('-').toLowerCase()}-${
+                post.strapiId
+              }`
+            )
           }
         >
-          {type === `post` ? `Read More` : `Explore!`}
+          Explore!
         </Button>
         <IconButton
-          className={clsx(classes.showTags, {
-            [classes.showTagsOpen]: showTags,
+          className={clsx(classes.showProjectTags, {
+            [classes.showProjectTagsOpen]: showProjectTags,
           })}
-          onClick={() => setShowTags(!showTags)}
+          onClick={() => setShowProjectTags(!showProjectTags)}
         >
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
       <Collapse
-        in={showTags}
+        in={showProjectTags}
         timeout={`auto`}
         unmountOnExit
-        classes={{ entered: classes.showTagsCollapseEntered }}
+        classes={{ entered: classes.showProjectTagsCollapseEntered }}
       >
         <CardContent>
-          {data.tags.length &&
-            data.tags.map((tag: any) => (
+          {post.tags.length > 0 &&
+            post.tags.map(tag => (
               <Chip
-                classes={{ root: classes.tagChip }}
+                classes={{ root: classes.projectTagChip }}
                 key={tag.id}
                 label={tag.name.toUpperCase()}
                 clickable
@@ -105,31 +105,38 @@ export default function LatestCard({ data, type }: LatestCardProps) {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    latestCardWrapper: {
+    postCardWrapper: {
       maxWidth: 345,
       width: '100%',
       display: 'flex',
       justifyContent: 'space-between',
       flexDirection: 'column',
     },
-    latestCardCover: {},
-    latestCardActionsWrapper: {
+    postCoverImage: {},
+    postCardActionsWrapper: {
       padding: theme.spacing(2),
     },
-    showTags: {
+    postCardActionAreaWrapper: {},
+    postCardContentWrapper: {
+      width: '100%',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+    },
+    showProjectTags: {
       transform: 'rotate(0deg)',
       marginLeft: 'auto',
       transition: theme.transitions.create('transform', {
         duration: theme.transitions.duration.shortest,
       }),
     },
-    showTagsOpen: {
+    showProjectTagsOpen: {
       transform: 'rotate(180deg)',
     },
-    showTagsCollapseEntered: {
+    showProjectTagsCollapseEntered: {
       position: 'relative',
     },
-    tagChip: {
+    projectTagChip: {
       margin: theme.spacing(1),
     },
   })

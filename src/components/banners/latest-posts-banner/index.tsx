@@ -2,28 +2,28 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 
-import { ProjectCard } from '@/components';
-import { IProject } from '@/types';
+import { IPost } from '@/types';
+import { PostCard } from '@/components';
 
-export interface LatestProjectsBannerProps {
-  projects: IProject[];
+export interface LatestPostsBannerProps {
+  posts: IPost[];
 }
 
-export default function LatestProjectsBanner({ projects }: LatestProjectsBannerProps) {
+export default function LatestPostsBanner({ posts }: LatestPostsBannerProps) {
   const classes = useStyles();
 
   return (
     <Grid
       container
-      classes={{ container: classes.latestProjectsBannerWrapper }}
+      classes={{ container: classes.latestPostsBannerWrapper }}
       direction={`column`}
       justify={`center`}
       alignItems={`center`}
       component={`section`}
     >
-      <Grid item classes={{ root: classes.latestProjectsPageTitle }}>
+      <Grid item classes={{ root: classes.latestPostsPageTitle }}>
         <Typography variant={`h2`} color={`secondary`} gutterBottom>
-          Latest Projects
+          Latest Posts
         </Typography>
       </Grid>
       <Grid
@@ -32,20 +32,13 @@ export default function LatestProjectsBanner({ projects }: LatestProjectsBannerP
         justify={`space-evenly`}
         component={`section`}
       >
-        {projects.map(
-          (project: IProject) => {
-            return (
-              <Grid
-                item
-                key={project.strapiId}
-              >
-                <ProjectCard
-                  project={project}
-                />
-              </Grid>
-            );
-          }
-        )}
+        {posts.map(post => {
+          return (
+            <Grid item key={post.strapiId}>
+              <PostCard post={post} />
+            </Grid>
+          );
+        })}
       </Grid>
     </Grid>
   );
@@ -53,12 +46,12 @@ export default function LatestProjectsBanner({ projects }: LatestProjectsBannerP
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    latestProjectsBannerWrapper: {
+    latestPostsBannerWrapper: {
       backgroundColor: theme.palette.primary.main,
       paddingLeft: theme.spacing(5),
       paddingRight: theme.spacing(5),
     },
-    latestProjectsPageTitle: {
+    latestPostsPageTitle: {
       paddingBottom: theme.spacing(8),
     },
   })

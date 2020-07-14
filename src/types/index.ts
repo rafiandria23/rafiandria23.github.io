@@ -11,17 +11,17 @@ export type Heading = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 export interface IProject {
   strapiId: string | any;
-  title: string;
+  name: string;
   content: string;
   cover: string;
   images: string[];
   publishedAt: Date | string;
   tags: ITag[];
-  summary: string;
+  overview: string;
 }
 
 export interface ITag {
-  strapiId: string | any;
+  id: string | any;
   name: string;
 }
 

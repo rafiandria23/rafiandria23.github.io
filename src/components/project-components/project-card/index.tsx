@@ -16,39 +16,31 @@ import {
 } from '@material-ui/core';
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 
+import { IProject, ITag } from '@/types';
+
 export interface ProjectCardProps {
-  strapiId: string;
-  name: string;
-  coverImageURL: string;
-  overview: string;
-  tags?: any[];
+  project: IProject;
 }
 
-export default function ProjectCard({
-  strapiId,
-  name,
-  coverImageURL = ``,
-  overview,
-  tags = [],
-}: ProjectCardProps) {
+export default function ProjectCard({ project }: ProjectCardProps) {
   const classes = useStyles();
   const [showTags, setShowTags] = useState<boolean>(false);
 
   return (
     <Card classes={{ root: classes.projectCardWrapper }}>
       <CardActionArea>
-        {coverImageURL && (
+        {project.cover && (
           <CardMedia
             classes={{ root: classes.projectCoverImage }}
-            image={coverImageURL}
-            title={name}
+            image={project.cover}
+            title={project.name}
             component={`img`}
           />
         )}
 
         <CardContent>
           <Typography gutterBottom variant={`h4`} component={`h2`}>
-            {name}
+            {project.name}
           </Typography>
           <Typography
             paragraph
@@ -56,7 +48,7 @@ export default function ProjectCard({
             component={`p`}
             // classes={{ root: classes.projectCardContentWrapper }}
           >
-            {overview}
+            {project.overview}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -67,11 +59,13 @@ export default function ProjectCard({
           variant={`outlined`}
           onClick={() =>
             navigate(
-              `/projects/${name.split(' ').join('-').toLowerCase()}-${strapiId}`
+              `/projects/${project.name.split(' ').join('-').toLowerCase()}-${
+                project.strapiId
+              }`
             )
           }
         >
-          Read More
+          Explore!
         </Button>
         <IconButton
           className={clsx(classes.showTags, {
@@ -89,8 +83,8 @@ export default function ProjectCard({
         classes={{ entered: classes.showTagsCollapseEntered }}
       >
         <CardContent>
-          {tags.length &&
-            tags.map((tag: any) => (
+          {project.tags.length > 0 &&
+            project.tags.map((tag: ITag) => (
               <Chip
                 classes={{ root: classes.tagChip }}
                 key={tag.id}

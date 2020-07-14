@@ -8,9 +8,10 @@ import { LatestCard } from '@/components';
 export interface LatestListProps {
   title: string;
   data: IPost[] | IProject[];
+  type: `post` | `project`;
 }
 
-export default function LatestList({ title, data }: LatestListProps) {
+export default function LatestList({ title, data, type }: LatestListProps) {
   const classes = useStyles();
 
   return (
@@ -35,14 +36,19 @@ export default function LatestList({ title, data }: LatestListProps) {
         alignItems={`center`}
         component={`div`}
       >
-        {data.length &&
-          data.map((item: IPost | IProject) => {
-            return (
-              <Grid key={item.strapiId} item>
-                <LatestCard data={item} />
+        {type === `post` && (data as IPost[]).length > 0
+          ? (data as IPost[]).map(post => (
+              <Grid key={post.strapiId} item>
+                <LatestCard data={post} type={`post`} />
               </Grid>
-            );
-          })}
+            ))
+          : type === `project` && (data as IProject[]).length > 0
+          ? (data as IProject[]).map(project => (
+              <Grid key={project.strapiId} item>
+                <LatestCard data={project} type={`project`} />
+              </Grid>
+            ))
+          : ''}
       </Grid>
     </Grid>
   );

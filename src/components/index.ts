@@ -13,6 +13,7 @@ export { default as LatestList } from './general-components/latest-list';
  */
 export { default as ProfileBanner } from './banners/profile-banner';
 export { default as LatestProfileBanner } from './banners/latest-projects-banner';
+export { default as LatestPostsBanner } from './banners/latest-posts-banner';
 
 /**
  * Project Components
@@ -20,3 +21,8 @@ export { default as LatestProfileBanner } from './banners/latest-projects-banner
 export { default as ProjectCard } from './project-components/project-card';
 export { default as ProjectHeader } from './project-components/project-header';
 export { default as ProjectDescription } from './project-components/project-description';
+
+/**
+ * Post Components
+ */
+export { default as PostCard } from './post-components/post-card';
