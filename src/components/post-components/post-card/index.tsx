@@ -59,7 +59,7 @@ export default function PostCard({ post }: PostCardProps) {
           variant={`outlined`}
           onClick={() =>
             navigate(
-              `/projects/${post.title.split(' ').join('-').toLowerCase()}-${
+              `/${post.title.split(' ').join('-').toLowerCase()}-${
                 post.strapiId
               }`
             )
@@ -84,7 +84,7 @@ export default function PostCard({ post }: PostCardProps) {
       >
         <CardContent>
           {post.tags.length > 0 &&
-            post.tags.map(tag => (
+            post.tags.map((tag) => (
               <Chip
                 classes={{ root: classes.projectTagChip }}
                 key={tag.id}

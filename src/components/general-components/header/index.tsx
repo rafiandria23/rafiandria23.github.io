@@ -103,9 +103,9 @@ export default function Header({}: HeaderProps) {
           <Button color={`inherit`} onClick={() => _goTo(`/about`)}>
             About
           </Button>
-          <Button color={`inherit`} onClick={() => _goTo(`/projects`)}>
+          {/* <Button color={`inherit`} onClick={() => _goTo(`/projects`)}>
             Projects
-          </Button>
+          </Button> */}
           <Button color={`inherit`} onClick={() => _goTo(`/blog`)}>
             Blog
           </Button>

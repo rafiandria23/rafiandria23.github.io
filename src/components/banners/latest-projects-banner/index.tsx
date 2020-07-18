@@ -9,7 +9,9 @@ export interface LatestProjectsBannerProps {
   projects: IProject[];
 }
 
-export default function LatestProjectsBanner({ projects }: LatestProjectsBannerProps) {
+export default function LatestProjectsBanner({
+  projects,
+}: LatestProjectsBannerProps) {
   const classes = useStyles();
 
   return (
@@ -32,20 +34,17 @@ export default function LatestProjectsBanner({ projects }: LatestProjectsBannerP
         justify={`space-evenly`}
         component={`section`}
       >
-        {projects.map(
-          (project: IProject) => {
-            return (
-              <Grid
-                item
-                key={project.strapiId}
-              >
-                <ProjectCard
-                  project={project}
-                />
-              </Grid>
-            );
-          }
-        )}
+        {projects !== undefined && projects.length > 0
+          ? projects.map((project: any) => {
+              project = project.node;
+
+              return (
+                <Grid item key={project.strapiId}>
+                  <ProjectCard project={project} />
+                </Grid>
+              );
+            })
+          : ''}
       </Grid>
     </Grid>
   );

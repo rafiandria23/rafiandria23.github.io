@@ -13,7 +13,10 @@ export interface IProject {
   strapiId: string | any;
   name: string;
   content: string;
-  cover: string;
+  cover: {
+    publicURL: string;
+    childImageSharp: any;
+  };
   images: string[];
   publishedAt: Date | string;
   tags: ITag[];
@@ -29,9 +32,17 @@ export interface IPost {
   strapiId: string | any;
   title: string;
   content: string;
-  cover: string;
+  cover: {
+    publicURL: string;
+    childImageSharp: any;
+  };
   images: string[];
   publishedAt: Date | string;
   tags: ITag[];
   summary: string;
+}
+
+export interface IModelCover {
+  publicURL: string;
+  childImageSharp: any;
 }

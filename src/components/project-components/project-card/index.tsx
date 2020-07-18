@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { navigate } from 'gatsby';
+import Img from 'gatsby-image';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import {
   Card,
@@ -30,12 +31,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     <Card classes={{ root: classes.projectCardWrapper }}>
       <CardActionArea>
         {project.cover && (
-          <CardMedia
-            classes={{ root: classes.projectCoverImage }}
-            image={project.cover}
-            title={project.name}
-            component={`img`}
-          />
+          <>
+            <CardMedia
+              classes={{ root: classes.projectCoverImage }}
+              image={project.cover.publicURL}
+              title={project.name}
+              component={`img`}
+            />
+            <Img fixed={project.cover.childImageSharp.fixed} />
+          </>
         )}
 
         <CardContent>

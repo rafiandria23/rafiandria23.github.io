@@ -5,12 +5,15 @@ import Img from 'gatsby-image';
 
 import { IModelCover } from '@/types';
 
-export interface ProjectHeaderProps {
-  name: string;
+export interface PostHeaderProps {
+  title: string;
   cover: IModelCover;
 }
 
-export default function ProjectHeader({ name, cover }: ProjectHeaderProps) {
+export default function PostHeader({
+  title,
+  cover,
+}: PostHeaderProps) {
   const classes = useStyles();
 
   return (
@@ -24,7 +27,7 @@ export default function ProjectHeader({ name, cover }: ProjectHeaderProps) {
     >
       <Grid item>
         <Typography variant={`h2`} classes={{ root: classes.projectName }}>
-          {name}
+          {title}
         </Typography>
       </Grid>
       <Grid item>
