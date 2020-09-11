@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-const ghPages = require('gh-pages')
+const ghPages = require('gh-pages');
 
 ghPages.clean();
 

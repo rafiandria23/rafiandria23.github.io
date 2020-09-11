@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "rafiandria23.github.io",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Adam Rafianri's Personal Blog",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Adam Rafiandri <rafiandria23@gmail.com>",
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
@@ -56,6 +56,10 @@
     "typescript": "^3.9.5"
   },
   "keywords": [
+    "Adam Rafiandri",
+    "adam rafiandri",
+    "rafiandria23",
+    "blog",
     "gatsby"
   ],
   "license": "MIT",

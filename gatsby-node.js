@@ -19,7 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const projects = result.data.projects.edges;
 
-  projects.forEach(project => {
+  projects.forEach((project) => {
     createPage({
       path: `/projects/${project.node.name
         .split(' ')
